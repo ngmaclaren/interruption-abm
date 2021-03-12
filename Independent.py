@@ -11,13 +11,21 @@ class Agent:
         rnum = np.random.uniform()
         self.state = 0 if rnum < self.P_t[0] else 1
         
-def simulation(P, T, N, ns):
-    G = [Agent(P[n]) for n in ns]
-    Y = np.full((T, N), np.nan)
-    for t in range(T):
-        y = [G[n].state for n in ns]
-        Y[t] = y
-        for n in ns:
-            G[n].step()
+def simulation(P, T, N, ns, oneagent = False):
+    if oneagent:
+        g = Agent(P)
+        Y = np.full((T, N), np.nan)
+        for t in range(T):
+            Y[t, 0] = g.state
+            g.step()
+
+    else:
+        G = [Agent(P[n]) for n in ns]
+        Y = np.full((T, N), np.nan)
+        for t in range(T):
+            y = [G[n].state for n in ns]
+            Y[t] = y
+            for n in ns:
+                G[n].step()
             
     return Y
