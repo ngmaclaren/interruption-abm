@@ -135,9 +135,10 @@ rnsdf = pd.DataFrame.from_dict(refnetstats, orient = "index")
 
 refdat = pd.concat([refdat, rnsdf], axis = 1)
 
-nsims = 100
-kind =  "synthetic" # "mimic" "synthetic"
-assumption = "dyadic" # "independent" "listening" "dyadic"
+nsims = 10
+kind =  "mimic" #"synthetic" # "mimic" "synthetic"
+assumption = "independent" # "dyadic" # "independent" "listening" "dyadic"
+savefigs = False
 print(kind)
 print(assumption)
 all_simdats = []
@@ -291,7 +292,8 @@ if kind == "mimic":
     ax.set_xlabel("Simulation Run")
     ax.set_ylabel("Proportion of Groups for which Leaders Match")
     #ax.axhline(1/effective_group_sizes.mean(), color = green)
-    fig.savefig("./img/mimic-groups-leadermatch.svg")
+    if savefigs:
+        fig.savefig("./img/mimic-groups-leadermatch.svg")
     fig.show()
     
 fig, axs = plt.subplots(3, 3)
@@ -318,10 +320,11 @@ for ax, LETTER in zip(axs.flatten(), LETTERS):
     ax.text(0.01, 0.99, LETTER, horizontalalignment = "left", verticalalignment = "top", transform = ax.transAxes)
     
 fig.tight_layout()
-if kind == "mimic":
-    fig.savefig("./img/mimic-groups-independent.svg")
-elif kind == "synthetic":
-    fig.savefig(f"./img/synthetic-groups-{assumption}.svg")
+if savefigs:
+    if kind == "mimic":
+        fig.savefig("./img/mimic-groups-independent.svg")
+    elif kind == "synthetic":
+        fig.savefig(f"./img/synthetic-groups-{assumption}.svg")
 fig.show()
 
 # get some fresh data, make sure everything works above, including storing the sim results
@@ -343,10 +346,11 @@ for ax, LETTER in zip(axs.flatten(), LETTERS):
     ax.text(0.01, 0.99, LETTER, horizontalalignment = "left", verticalalignment = "top", transform = ax.transAxes)
 
 fig.tight_layout()
-if kind == "mimic":
-    fig.savefig("./img/mimic-groups-independent-boxplots.svg")
-elif kind == "synthetic":
-    fig.savefig(f"./img/synthetic-groups-{assumption}-boxplots.svg")
+if savefigs:
+    if kind == "mimic":
+        fig.savefig("./img/mimic-groups-independent-boxplots.svg")
+    elif kind == "synthetic":
+        fig.savefig(f"./img/synthetic-groups-{assumption}-boxplots.svg")
 
 fig.show()
 print("Done.")

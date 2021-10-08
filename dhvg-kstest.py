@@ -56,7 +56,7 @@ for gID in gIDs:
     pIDs = pd.unique(data[data.gID == gID]['pID'])
     for pID in pIDs:
         dat = data.loc[data['pID'] == pID, ]
-        if len(dat) > 20:
+        if len(dat) >= 20:
             g = ia.directed_horizontal_visibility_graph(dat)
             
             kr = list(dict(g.in_degree()).values())
@@ -105,5 +105,5 @@ ax2.axhline(y = 0.05, color = "red")
 ax2.text(0.01, 0.99, "B", horizontalalignment = "left", verticalalignment = "top", transform = ax2.transAxes)
 fig.tight_layout()
 
-fig.savefig("./img/equilibrium.svg")
+fig.savefig("./img/equilibrium.pdf")
 print("Done")

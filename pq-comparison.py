@@ -106,7 +106,7 @@ for col, ref in zip(cols, refs):
 for ax, col in zip(axs.flatten(), cols):
     ax.text(0.5, 0.5, r"$p$ = " + f"{pvals[col]}", horizontalalignment = "left", transform = ax.transAxes)
 
-fig.savefig("./img/pq-overall-distribution.svg")
+fig.savefig("./img/pq-overall-distribution.pdf")
 fig.show()
 
 ###
@@ -184,7 +184,7 @@ for i in range(len(Ns)):
             axs[i, j].set_title(title)
 
 fig.tight_layout(rect=[0.01, 0.03, 1, 0.95]) #left bottom right top
-fig.savefig("./img/pq-wngroup-distribution.svg")
+fig.savefig("./img/pq-wngroup-distribution.pdf")
 fig.show()
 
 

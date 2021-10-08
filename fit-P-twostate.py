@@ -146,9 +146,9 @@ ax[0].text(0.01, 0.99, "A", horizontalalignment = "left", verticalalignment = "t
 ax[1].text(0.01, 0.99, "B", horizontalalignment = "left", verticalalignment = "top", transform = ax[1].transAxes)
         
 if ignore:
-    fig.savefig('./img/distribution-fits-nosimul.svg')
+    fig.savefig('./img/distribution-fits-nosimul.pdf')
 else:
-    fig.savefig('./img/distribution-fits.svg')
+    fig.savefig('./img/distribution-fits.pdf')
 plt.show()
 
 results.to_csv(savepath)
